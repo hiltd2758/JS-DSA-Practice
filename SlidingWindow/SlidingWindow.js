@@ -30,6 +30,6 @@ function SlidingWindow(arr, K)
     return maxLen;
 }
 
-console.log(SlidingWindow(arr, K));
+console.log(SlidingWindow(arr, K)); //2 -> 
 
 //two pointers with sliding window
