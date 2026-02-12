@@ -40,39 +40,32 @@
 
 // 1 <= s.length <= 104
 // s consists of parentheses only '()[]{}'.
-let s = "([])";
-function isValid(s) {
-    let stack = [];
-    let map = {
-        '(': ')',
-        '{': '}',
-        '[': ']'
-    };
 
-    //using simple for loop 
-    // for (let i = 0; i < s.length; i++) {
-    //     let char = s[i];
-    //     if (map[char]) {
-    //         stack.push(char);
-    //     }
-    //     else {
-    //         let last = stack.pop();
-    //         if (map[last] !== char) {
-    //             return false;
-    //         }
-    //     }
-    // }
-    for (let char of s) {
-        if (map[char]) {
-            stack.push(char);
-        } else {
-            let last = stack.pop();
-            if (map[last] !== char) {
+let s = "()[]{}";
+
+function isValidParentheses(s) {
+    let stack =[];
+    let hashTable = {
+        ')' : '(',
+        ']' : '[',
+        '}' : '{'
+    }
+
+    for(let i=0; i<s.length; i++)
+    {
+        let char = s[i];
+        if(hashTable[char])
+        {
+            if(stack.length === 0 || stack.pop() !== hashTable[char])
+            {
                 return false;
             }
         }
-        
+        else
+        {
+            stack.push(char);
+        }
     }
     return stack.length === 0;
 }
-console.log(isValid(s)); // true -> "([])"
+console.log(isValidParentheses(s));
