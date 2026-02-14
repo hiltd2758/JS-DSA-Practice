@@ -41,31 +41,26 @@
 // 1 <= s.length <= 104
 // s consists of parentheses only '()[]{}'.
 
-let s = "()[]{}";
-
-function isValidParentheses(s) {
-    let stack =[];
-    let hashTable = {
-        ')' : '(',
-        ']' : '[',
-        '}' : '{'
+let input = ("{[]]]}")
+function leetcode20(input) {
+    let stack = [];
+    let hashMap = {
+        ')': '(',
+        ']': '[',
+        '}': '{'
     }
-
-    for(let i=0; i<s.length; i++)
-    {
-        let char = s[i];
-        if(hashTable[char])
-        {
-            if(stack.length === 0 || stack.pop() !== hashTable[char])
-            {
-                return false;
-            }
-        }
-        else
-        {
+    for (let i = 0; i < input.length; i++) {
+        let char = input[i]; // giá trị đại diện cho đối tượng đang xét
+        if (hashMap[char] === undefined) {
             stack.push(char);
+        }
+        else {
+            if (stack.length === 0) return false
+            if (stack[stack.length - 1] !== hashMap[char])
+                return false
+            stack.pop()
         }
     }
     return stack.length === 0;
 }
-console.log(isValidParentheses(s));
+console.log(leetcode20(input));
